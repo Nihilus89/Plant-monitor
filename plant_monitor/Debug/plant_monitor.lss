@@ -1265,10 +1265,10 @@ void mem_set(void)	// set a reference value in the EEPROM
      5de:	0e 94 5d 07 	call	0xeba	; 0xeba <__divmodsi4>
      5e2:	69 01       	movw	r12, r18
      5e4:	7a 01       	movw	r14, r20
-	dry = val;
+	dry = (uint16_t)val;
      5e6:	30 93 91 01 	sts	0x0191, r19
      5ea:	20 93 90 01 	sts	0x0190, r18
-	eeprom_write_word((uint16_t*)eep_word_addr++, val);
+	eeprom_write_word((uint16_t*)eep_word_addr++, dry);
      5ee:	b9 01       	movw	r22, r18
      5f0:	80 e0       	ldi	r24, 0x00	; 0
      5f2:	90 e0       	ldi	r25, 0x00	; 0
@@ -1345,7 +1345,7 @@ void init (void)         // collect hardware initializations here
      668:	0e 94 53 01 	call	0x2a6	; 0x2a6 <lcd_init>
 	lcd_clrscr();		// clear the display
      66c:	0e 94 1b 01 	call	0x236	; 0x236 <lcd_clrscr>
-	
+
 	// Check the stored dry point
 	mem_check(); // get dry value from EEPROM
      670:	0e 94 92 01 	call	0x324	; 0x324 <mem_check>

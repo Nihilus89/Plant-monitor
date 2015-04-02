@@ -95,7 +95,7 @@ void init (void)         // collect hardware initializations here
 	CLOSE					// immediately set the pulp pin LOW
 	lcd_init(LCD_DISP_ON); // initialize LCD
 	lcd_clrscr();		// clear the display
-	
+
 	// Check the stored dry point
 	mem_check(); // get dry value from EEPROM
 	if(EMPTY)
@@ -233,8 +233,8 @@ void mem_set(void)	// set a reference value in the EEPROM
 	}
 	
 	val = sum/500;
-	dry = val;
-	eeprom_write_word((uint16_t*)eep_word_addr++, val);
+	dry = (uint16_t)val;
+	eeprom_write_word((uint16_t*)eep_word_addr++, dry);
 	
 	CLEAR_DISP
 	lcd_puts("New dry point:");
